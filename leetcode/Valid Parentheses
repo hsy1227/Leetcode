@@ -1,0 +1,23 @@
+#include <iostream>
+#include <unordered_map>
+#include <stack>
+using namespace std;
+
+
+class Solution {
+public:
+    bool isValid(string s) {
+        unordered_map<char,char> list={{'}','{'},{']','['},{')','('}};
+        stack<char> stk;
+        for(auto c:s){
+           if(c=='(' || c=='{' || c=='['){
+               stk.push(c);
+           }else if(stk.size()==0 || stk.top() != list[c]){ 
+               return false;              
+           }else{
+               stk.pop();
+           }
+        }
+        return stk.empty();
+    }
+};
