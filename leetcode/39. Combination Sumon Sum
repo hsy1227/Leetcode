@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> nums;
+        sort(candidates.begin(),candidates.end()); //排序
+        slove(candidates,target,ans,nums,0);
+        return ans;
+        
+        
+    }
+    
+    
+    void slove(vector<int>& a,int tar,vector<vector<int>>& ansList,vector<int>& ansNum,int index){
+        if(tar<0) return;
+        if(tar==0){
+            ansList.push_back(ansNum);
+            return;
+        }
+        for(int i=index;i<a.size();i++){
+            ansNum.push_back(a[i]);
+            slove(a,tar-a[i],ansList,ansNum,i);
+            ansNum.pop_back();
+        }
+    }    
+};
