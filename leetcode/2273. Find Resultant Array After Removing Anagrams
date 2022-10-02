@@ -1,0 +1,10 @@
+class Solution {
+public:
+    vector<string> removeAnagrams(vector<string>& words) {
+        if(words.size()==NULL) return;
+        if(words.size()==1) return words;
+        for(int i=1;i<words.size();i++){
+            if(sort(words[i].begin(),words[i].end()))
+        }
+    }
+};
