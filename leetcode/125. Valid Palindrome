@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int left=0,right=s.size()-1;
+        while(left<=right){
+            while(!isWord(s[left]) && left<right){
+                left++;
+            }
+            while(!isWord(s[right]) && left<right)
+                right--;
+           if(tolower(s[left])!=tolower(s[right])){
+               return false;
+           }
+            left++;
+            right--;
+        }
+        return true;
+    }
+    bool isWord(char word){
+        if(('A'<= word && word<='Z') || ('a'<= word && word<='z') || ('0'<= word && word<='9'))
+            return true;
+        else return false;
+    }
+    char tolower(char word){
+        if('A'<= word && word<='Z') return word+32;
+        else return word;
+    }    
+};
