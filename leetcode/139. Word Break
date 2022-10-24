@@ -1,0 +1,17 @@
+class Solution {
+public:
+    unordered_map<string,bool> list;  
+    bool wordBreak(string s, vector<string>& wordDict) {
+        if(find(wordDict.begin(),wordDict.end(),s)!=wordDict.end())
+            return true;
+        if(list.find(s)!=list.end())
+            return list[s];
+        for(int i=1;i<s.length();i++){
+            string left=s.substr(0,i);
+            if(find(wordDict.begin(),wordDict.end(),left)!=wordDict.end() && wordBreak(s.substr(i),wordDict)){
+                return list[s]=true;
+            }
+        }
+        return list[s]=false;
+    }
+};
