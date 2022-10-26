@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int n=nums.size();
+        int maxAns=nums[0];
+        int minAns=nums[0];
+        int ans=nums[0];
+        for(int i=1;i<n;i++){
+            if(nums[i]<0){  //遇到負數要換
+                int temp=maxAns;
+                maxAns=minAns;
+                minAns=temp;
+            }
+            minAns=min(nums[i]*minAns,nums[i]);
+            maxAns=max(nums[i]*maxAns,nums[i]);
+            ans=max(ans,maxAns);
+        }
+     return ans;   
+    }
+};
