@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool canFinish(int n, vector<vector<int>>& pre) {
+        vector<int> adj[n];
+        for(int i=0;i<pre.size();i++){
+            adj[pre[i][0]].push_back(pre[i][1]);
+        }
+        vector<bool> vis(n,false);
+        vector<bool> order(n,false);
+        for(int i=0;i<n;i++){
+            if(!vis[i] && adj[i].size() && !check(adj,i,vis,order)) return false;
+        }
+        return true;
+    }
+    bool check(vector<int> adj[],int i,vector<bool>& vis,vector<bool>& order){
+        vis[i]=true;
+        order[i]=true;
+        for(auto it:adj[i]){
+            if(!vis[it]  && !check(adj,it,vis,order)) return false;
+            else if(order[it]) return false;
+        }
+        order[i]=false;
+        return true;
+    }
+    
+};
