@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> list;
+        for(int i=0;i<n;i++){
+            if(list.size()==0 || list.back()<nums[i])
+                list.push_back(nums[i]);
+            else
+                cout<<*lower_bound(list.begin(),list.end(),nums[i])<<endl;
+                *lower_bound(list.begin(),list.end(),nums[i])=nums[i];
+        }
+        return list.size();
+    }
+};
