@@ -1,0 +1,41 @@
+class Solution {
+public:
+    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
+        vector<vector<int>> ans;
+        if(!heights.size() || !heights[0].size()) return ans;
+        vector<vector<bool>> Pacific(heights.size(),vector<bool>(heights[0].size(),false));
+        vector<vector<bool>> Atlantic(heights.size(),vector<bool>(heights[0].size(),false));
+
+        for(int x=0;x<heights.size();x++){//left right
+            dfs(x,0,heights,Pacific,INT_MIN);
+            dfs(x,heights[0].size()-1,heights,Atlantic,INT_MIN);
+        }
+        for(int y=0;y<heights[0].size();y++){
+            dfs(0,y,heights,Pacific,INT_MIN);
+            dfs(heights.size()-1,y,heights,Atlantic,INT_MIN);
+        }
+
+        
+        for(int i=0;i<heights.size();i++){
+            for(int j=0;j<heights[0].size();j++){
+                if(Pacific[i][j] && Atlantic[i][j])
+                    ans.push_back(vector<int>{i,j});
+            }
+        }
+        return ans;
+
+    }
+
+
+    void dfs(int x,int y,vector<vector<int>>& martix,vector<vector<bool>>& PAartix,int val){
+        if(x<0 || y<0 ||x>=martix.size()||y>=martix[0].size()|| PAartix[x][y] ||martix[x][y]<val){
+            return;
+        }
+        PAartix[x][y]=true;
+        dfs(x-1,y,martix,PAartix,martix[x][y]);
+        dfs(x,y-1,martix,PAartix,martix[x][y]);
+        dfs(x+1,y,martix,PAartix,martix[x][y]);
+        dfs(x,y+1,martix,PAartix,martix[x][y]);
+    }
+
+};
