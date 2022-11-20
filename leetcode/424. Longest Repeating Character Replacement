@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        unordered_map<char,int> record;
+        int maxcount=0; //目前最長長度
+        int ans=0;  //答案
+        int right=0;
+        int left=0;
+        while(right!=s.length()){
+            record[s[right]]++;
+            maxcount=max(maxcount,record[s[right]]);
+            if((right-left+1-maxcount)>k){
+                record[s[left]]-=1;
+                left+=1;
+            }
+            ans=max(ans,right-left+1);
+            right++;
+        }
+    return ans;
+    }
+};
