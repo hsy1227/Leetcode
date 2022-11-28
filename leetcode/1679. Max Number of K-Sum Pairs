@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        sort(nums.begin(),nums.end());
+        unordered_map<int,int> map;
+        int ans=0;
+        int left=0,right=nums.size()-1;
+        while(left<right){
+            int now_ans=nums[left]+nums[right];
+            if(now_ans==k){ 
+                ans++;
+                nums[left]=0;
+                nums[right]=0;
+                left++;
+                right--;
+            }else if(now_ans>k){
+                right--;
+            }else{
+                left++;
+            }
+        }
+        return ans;
+    }
+};
