@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int countPairs(vector<int>& deliciousness) {
+        long long ans=0;
+        unordered_map<int,int> map;
+        for(auto x:deliciousness){
+            for(int i=1;i<=pow(2,21);i*=2){
+                if(map.count(i-x)){
+                    ans+=map[i-x];
+                }
+            }
+            map[x]++;
+        }
+    return ans%(int)(1e9+7);
+    }
+};
