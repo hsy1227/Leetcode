@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> findKDistantIndices(vector<int>& nums, int key, int k) {
+        int n=nums.size();
+        vector<int> jlist;
+        vector<int> ans;
+        for(int i=0;i<n;i++){
+            if(nums[i]==key){
+                jlist.push_back(i);
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(check(i,jlist,k)==true){
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
+    bool check(int i,vector<int>& list,int k){
+        for(int x=0;x<list.size();x++){
+            if(i>=list[x]){
+                if((i-list[x])<=k){
+                    return true;
+                }
+            }else{
+                if((list[x]-i)<=k){
+                    return true;
+                }
+            }
+        }
+        return false;
+    } 
+
+
+};
