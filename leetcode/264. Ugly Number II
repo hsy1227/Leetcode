@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        vector<int> ans;
+        ans.push_back(1);
+        if(n==1) return 1;
+        int i2=0,i3=0,i5=0;
+        while(ans.size()<n){
+            int n2=ans[i2]*2,n3=ans[i3]*3,n5=ans[i5]*5;
+            int number=min(n2,min(n3,n5));
+            if(number==n2) i2+=1;
+            if(number==n3) i3+=1;
+            if(number==n5) i5+=1;
+            ans.push_back(number);
+        }
+        return ans.back();
+
+    }
+};
