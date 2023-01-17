@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int nthUglyNumber(long n, long a, long b, long c) {
+        long left=0;
+        long right=INT_MAX;
+        long ab=lcm(a,b);
+        long bc=lcm(b,c);
+        long ac=lcm(a,c);
+        long abc=lcm(a,bc);
+        while(left<right){
+            long m=left+(right-left)/2;
+            long k=m/a+m/b+m/c-m/ab-m/bc-m/ac+m/abc;
+            if(k>=n){
+                right=m;
+            }else{
+                left=m+1;
+            }
+        }
+        return left;
+    }
+};
