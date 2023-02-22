@@ -1,0 +1,13 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        vector<int> num(3);
+        for(int j:nums) ++num[j];
+        for(int i=0,cur=0;i<3;i++){
+            for(int j=0;j<num[i];j++){
+                nums[cur]=i;
+                cur+=1;
+            }
+        }
+    }
+};
