@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> before;
+        before.push_back(1);
+        for(int i=1;i<=rowIndex;i++){
+            vector<int> now;
+            for(int count=0;count<=i;count++){
+                if(count==0 or count==i){
+                    now.push_back(1);
+                }else{
+                    now.push_back(before[count-1]+before[count]);
+                }
+            }
+            before=now;
+        }
+        return before;
+    }
+};
