@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        unordered_map<char,int> sit;
+        vector<pair<int,int>> dis;
+        int c=0;
+        for(int i=0;i<s.length();i++){
+            if(!sit.count(s[i])){
+                dis.push_back({i,i});
+                sit[s[i]]=c;
+                c+=1;
+            }else{
+                dis[sit[s[i]]].second=i;
+            }
+        }
+        vector<int> ans;
+        int last=dis[0].second;
+        int start=dis[0].first;
+        for(int i=1;i<dis.size();i++){
+            if(dis[i].first>last){
+                ans.push_back(last-start+1);
+                start=dis[i].first;
+                last=dis[i].second;
+            }else{
+                last=max(last,dis[i].second);
+            }
+        }
+        ans.push_back(last-start+1);
+        return ans;
+    }
+};
