@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        if(digits.empty()) return {};
+        vector<string> ans{""};
+        map<int,string> list{
+            {2,"abc"},
+            {3,"def"},
+            {4,"ghi"},
+            {5,"jkl"},
+            {6,"mno"},
+            {7,"pqrs"},
+            {8,"tuv"},
+            {9,"wxyz"}
+        };
+        for(int i=0;i<digits.size();i++){
+            vector<string> s;
+            string str=list[digits[i]-'0'];
+            for(int j=0;j<str.size();j++){
+                for(string x:ans) s.push_back(x+str[j]);
+            }
+            ans=s;
+        }
+        return ans;
+    }
+
+};
