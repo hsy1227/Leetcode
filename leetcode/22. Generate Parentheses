@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<string> ans;
+    vector<string> generateParenthesis(int n) {
+        track("",0,0,n);
+        return ans;
+    }
+
+    void track(string s,int open,int close,int n){
+        if(open==n && close==n){
+            ans.push_back(s);
+            return;   
+        }
+        if(open<n){
+            track(s+'(',open+1,close,n);
+        }
+        if(close<open){
+            track(s+')',open,close+1,n);
+        }
+        return;
+    }
+};
